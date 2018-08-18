@@ -55,38 +55,11 @@ alexantr.coordinatesWidget = (function (d) {
         var input = d.getElementById(inputId),
             opt = initOptions(inputId, options),
             placemarkPreset = 'islands#redDotIcon';
-
-        var yMap = new ymaps.Map('map', {
-                center: [opt.lat, opt.lng],
-                zoom: opt.zoom,
-                controls: ['smallMapDefaultSet']
-            }),
-            // Creating an instance of the ymaps.control.SearchControl class.
-            mySearchControl = new ymaps.control.SearchControl({
-            options: {
-                noPlacemark: true
-            }
-        }),
-            // The search results will be placed in the collection.
-            mySearchResults = new ymaps.GeoObjectCollection(null, {
-                hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
-            });
-        yMap.controls.add(mySearchControl);
-        yMap.geoObjects.add(mySearchResults);
-        // When the found object is clicked, the placemark turns red.
-        mySearchResults.events.add('click', function (e) {
-            e.get('target').options.set('preset', 'islands#redIcon');
+        var yMap = new ymaps.Map(mapId, {
+            center: [opt.lat, opt.lng],
+            zoom: opt.zoom,
+            controls: ['zoomControl']
         });
-        // Putting the selected result in the collection.
-        mySearchControl.events.add('resultselect', function (e) {
-            var index = e.get('index');
-            mySearchControl.getResult(index).then(function (res) {
-                mySearchResults.add(res);
-            });
-        }).add('submit', function () {
-            mySearchResults.removeAll();
-        });
-
         var marker;
         if (opt.showMarker) {
             marker = new ymaps.Placemark([opt.lat, opt.lng], {}, {preset: placemarkPreset});
@@ -118,15 +91,6 @@ alexantr.coordinatesWidget = (function (d) {
                 }
             }
         };
-
-
-
-
-
-
-
-
-
 
         // workaround for blank map in some cases
         setTimeout(function () {
