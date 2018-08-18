@@ -59,7 +59,7 @@ alexantr.coordinatesWidget = (function (d) {
         var yMap = new ymaps.Map('map', {
                 center: [opt.lat, opt.lng],
                 zoom: opt.zoom,
-                controls: []
+                controls: ['smallMapDefaultSet']
             }),
             // Creating an instance of the ymaps.control.SearchControl class.
             mySearchControl = new ymaps.control.SearchControl({
