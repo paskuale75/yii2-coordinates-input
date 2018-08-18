@@ -95,7 +95,7 @@ alexantr.coordinatesWidget = (function (d) {
         // Creating an instance of the ymaps.control.SearchControl class.
         var mySearchControl = new ymaps.control.SearchControl({
             options: {
-                noPlacemark: true
+                noPlacemark: false
             }
         }),
             // The search results will be placed in the collection.
