@@ -95,7 +95,8 @@ alexantr.coordinatesWidget = (function (d) {
         // Creating an instance of the ymaps.control.SearchControl class.
         var mySearchControl = new ymaps.control.SearchControl({
             options: {
-                noPlacemark: false
+                noPlacemark: false,
+                noPopup: true
             }
         }),
             // The search results will be placed in the collection.
@@ -106,7 +107,7 @@ alexantr.coordinatesWidget = (function (d) {
         yMap.geoObjects.add(mySearchResults);
         // When the found object is clicked, the placemark turns red.
         mySearchResults.events.add('click', function (e) {
-            //e.get('target').options.set('preset', 'islands#redIcon');
+            e.get('target').options.set('preset', 'islands#redIcon');
             var coords = e.get('coords');
             console.log('events.add click --> coords:');
             console.dir(coords);
