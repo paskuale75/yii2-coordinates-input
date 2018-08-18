@@ -108,7 +108,7 @@ alexantr.coordinatesWidget = (function (d) {
         mySearchResults.events.add('click', function (e) {
             //e.get('target').options.set('preset', 'islands#redIcon');
             var coords = e.get('coords');
-            console.log('coords:');
+            console.log('events.add click --> coords:');
             console.dir(coords);
             if (typeof marker !== 'undefined') {
                 yMap.geoObjects.remove(marker);
@@ -123,6 +123,8 @@ alexantr.coordinatesWidget = (function (d) {
             mySearchControl.getResult(index).then(function (res) {
                 mySearchResults.add(res);
             });
+            console.log('events.add resultselect --> coords:');
+            console.log('index = '+index);
         }).add('submit', function () {
             mySearchResults.removeAll();
         });
