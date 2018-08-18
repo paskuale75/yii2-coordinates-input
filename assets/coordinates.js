@@ -109,6 +109,9 @@ alexantr.coordinatesWidget = (function (d) {
         // When the found object is clicked, the placemark turns red.
         mySearchResults.events.add('click', function (e) {
             e.get('target').options.set('preset', 'islands#redIcon');
+            console.log('e.get(\'target\'):');
+            console.dir(e.get('target'));
+
             var coords = e.get('coords');
             console.log('events.add click --> coords:');
             console.dir(coords);
