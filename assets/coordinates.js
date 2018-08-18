@@ -108,6 +108,8 @@ alexantr.coordinatesWidget = (function (d) {
         mySearchResults.events.add('click', function (e) {
             //e.get('target').options.set('preset', 'islands#redIcon');
             var coords = e.get('coords');
+            console.log('coords:');
+            console.dir(coords);
             if (typeof marker !== 'undefined') {
                 yMap.geoObjects.remove(marker);
             }
