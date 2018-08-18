@@ -96,7 +96,7 @@ alexantr.coordinatesWidget = (function (d) {
         var mySearchControl = new ymaps.control.SearchControl({
             options: {
                 noPlacemark: false,
-                noPopup: true
+                //noPopup: true
             }
         }),
             // The search results will be placed in the collection.
