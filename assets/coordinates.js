@@ -102,6 +102,8 @@ alexantr.coordinatesWidget = (function (d) {
             mySearchResults = new ymaps.GeoObjectCollection(null, {
                 hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
             });
+        console.log('mySearchResults qui sotto :');
+        console.dir(mySearchResults);
         yMap.controls.add(mySearchControl);
         yMap.geoObjects.add(mySearchResults);
         // When the found object is clicked, the placemark turns red.
