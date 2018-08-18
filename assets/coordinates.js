@@ -63,16 +63,16 @@ alexantr.coordinatesWidget = (function (d) {
             }),
             // Creating an instance of the ymaps.control.SearchControl class.
             mySearchControl = new ymaps.control.SearchControl({
-                options: {
-                    noPlacemark: true
-                }
-            }),
+            options: {
+                noPlacemark: true
+            }
+        }),
             // The search results will be placed in the collection.
             mySearchResults = new ymaps.GeoObjectCollection(null, {
                 hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
             });
-        myMap.controls.add(mySearchControl);
-        myMap.geoObjects.add(mySearchResults);
+        yMap.controls.add(mySearchControl);
+        yMap.geoObjects.add(mySearchResults);
         // When the found object is clicked, the placemark turns red.
         mySearchResults.events.add('click', function (e) {
             e.get('target').options.set('preset', 'islands#redIcon');
@@ -86,7 +86,6 @@ alexantr.coordinatesWidget = (function (d) {
         }).add('submit', function () {
             mySearchResults.removeAll();
         });
-
 
         var marker;
         if (opt.showMarker) {
@@ -119,6 +118,13 @@ alexantr.coordinatesWidget = (function (d) {
                 }
             }
         };
+
+
+
+
+
+
+
 
 
 
