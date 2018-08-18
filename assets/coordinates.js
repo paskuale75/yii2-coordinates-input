@@ -106,7 +106,14 @@ alexantr.coordinatesWidget = (function (d) {
         yMap.geoObjects.add(mySearchResults);
         // When the found object is clicked, the placemark turns red.
         mySearchResults.events.add('click', function (e) {
-            e.get('target').options.set('preset', 'islands#redIcon');
+            //e.get('target').options.set('preset', 'islands#redIcon');
+            var coords = e.get('coords');
+            if (typeof marker !== 'undefined') {
+                yMap.geoObjects.remove(marker);
+            }
+            marker = new ymaps.Placemark(coords, {}, {preset: placemarkPreset});
+            yMap.geoObjects.add(marker);
+            changeInputValue(input, coords[0], coords[1]);
         });
         // Putting the selected result in the collection.
         mySearchControl.events.add('resultselect', function (e) {
