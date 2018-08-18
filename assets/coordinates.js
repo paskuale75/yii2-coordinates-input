@@ -84,7 +84,7 @@ alexantr.coordinatesWidget = (function (d) {
             });
         }).add('submit', function () {
             mySearchResults.removeAll();
-        }),
+        });
 
         var marker;
         if (opt.showMarker) {
