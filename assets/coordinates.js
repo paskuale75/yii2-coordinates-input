@@ -106,6 +106,11 @@ alexantr.coordinatesWidget = (function (d) {
         console.dir(mySearchResults);
         yMap.controls.add(mySearchControl);
         yMap.geoObjects.add(mySearchResults);
+        // Subscribing to the event of getting search results from the server.
+        searchControl.events.add('resultselect', function (e) {
+            var index = searchControl.getSelectedIndex(e);
+            console.log("Index of the selected element: " + index);
+        })
         // When the found object is clicked, the placemark turns red.
         mySearchResults.events.add('click', function (e) {
             e.get('target').options.set('preset', 'islands#redIcon');
