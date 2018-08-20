@@ -58,8 +58,9 @@ alexantr.coordinatesWidget = (function (d) {
         var yMap = new ymaps.Map(mapId, {
             center: [opt.lat, opt.lng],
             zoom: opt.zoom,
-            controls: ['zoomControl']
+            controls: ['default']
         });
+
         var marker;
         if (opt.showMarker) {
             marker = new ymaps.Placemark([opt.lat, opt.lng], {}, {preset: placemarkPreset});
@@ -91,90 +92,6 @@ alexantr.coordinatesWidget = (function (d) {
                 }
             }
         };
-
-        // Creating an instance of the ymaps.control.SearchControl class.
-        var mySearchControl = new ymaps.control.SearchControl({
-                options: {
-                    noPlacemark: true,
-                }
-            }),
-
-            // The search results will be placed in the collection.
-            mySearchResults = new ymaps.GeoObjectCollection(null, {
-                hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
-            });
-        console.log('mySearchResults qui sotto :');
-        console.dir(mySearchResults);
-        yMap.controls.add(mySearchControl);
-        yMap.geoObjects.add(mySearchResults);
-
-        // Subscribing to the event of getting search results from the server.
-        mySearchControl.events.add('resultselect', function (e) {
-            var index = mySearchControl.getSelectedIndex(e);
-            console.log("Index of the selected element: " + index);
-
-            var result = mySearchControl.getResult();
-            result.then(function (res) {
-                console.log("Results " + res );
-            }, function (err) {
-                console.log("Error");
-            });
-
-        });
-
-
-
-        mySearchControl.events.add('load', function (event) {
-            // Checking that this event isn't just finishing loading results
-            // and the query has at least one result found.
-            if (!event.get('skip') && mySearchControl.getResultsCount()) {
-                mySearchControl.showResult(0);
-                console.log('mySearchControl.showResult(0) = ');
-                console.log('seguimi sono qui !!!!');
-                console.dir(mySearchControl.showResult(0));
-                e.get('target').options.set('preset', 'islands#redIcon');
-                console.log(' chi è sto e.get(target) ?');
-                console.dir(e.get('target'));
-
-                var coords = e.get('coords');
-                console.log('events.add click --> coords:');
-                console.dir(coords);
-                if (typeof marker !== 'undefined') {
-                    yMap.geoObjects.remove(marker);
-                }
-                marker = new ymaps.Placemark(coords, {}, {preset: placemarkPreset});
-                yMap.geoObjects.add(marker);
-                changeInputValue(input, coords[0], coords[1]);
-            }
-        });
-        // When the found object is clicked, the placemark turns red.
-        /*mySearchResults.events.add('click', function (e) {
-            e.get('target').options.set('preset', 'islands#redIcon');
-            console.log('e.get(\'target\'):');
-            console.dir(e.get('target'));
-
-            var coords = e.get('coords');
-            console.log('events.add click --> coords:');
-            console.dir(coords);
-            if (typeof marker !== 'undefined') {
-                yMap.geoObjects.remove(marker);
-            }
-            marker = new ymaps.Placemark(coords, {}, {preset: placemarkPreset});
-            yMap.geoObjects.add(marker);
-            changeInputValue(input, coords[0], coords[1]);
-        });*/
-        // Putting the selected result in the collection.
-        mySearchControl.events.add('resultselect', function (e) {
-            var index = e.get('index');
-            mySearchControl.getResult(index).then(function (res) {
-                mySearchResults.add(res);
-            });
-            console.log('events > add > resultselect ');
-            console.log('res = '+res);
-            console.log('index = '+index);
-        }).add('submit', function () {
-            mySearchResults.removeAll();
-        });
 
         // workaround for blank map in some cases
         setTimeout(function () {
