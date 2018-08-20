@@ -118,9 +118,9 @@ alexantr.coordinatesWidget = (function (d) {
                 mySearchControl.showResult(0);
                 console.log('mySearchControl.showResult(0) = ');
                 console.log('seguimi sono qui !!!!');
-                console.dir(mySearchControl.showResult(0).value);
+                console.dir(mySearchControl.showResult(0));
                 e.get('target').options.set('preset', 'islands#redIcon');
-                console.log('e.get(\'target\'):');
+                console.log(' chi è sto e.get(target) ?');
                 console.dir(e.get('target'));
 
                 var coords = e.get('coords');
