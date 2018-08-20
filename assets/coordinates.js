@@ -58,10 +58,10 @@ alexantr.coordinatesWidget = (function (d) {
         var yMap = new ymaps.Map(mapId, {
             center: [opt.lat, opt.lng],
             zoom: opt.zoom,
-            controls: ['default']
+            controls: [] //none
         });
 
-        var marker;
+        /*var marker;
         if (opt.showMarker) {
             marker = new ymaps.Placemark([opt.lat, opt.lng], {}, {preset: placemarkPreset});
             yMap.geoObjects.add(marker);
@@ -74,7 +74,35 @@ alexantr.coordinatesWidget = (function (d) {
             marker = new ymaps.Placemark(coords, {}, {preset: placemarkPreset});
             yMap.geoObjects.add(marker);
             changeInputValue(input, coords[0], coords[1]);
+        });*/
+
+
+        // Creating an instance of the ymaps.control.SearchControl class.
+        var mySearchControl = new ymaps.control.SearchControl({
+            options: {
+                noPlacemark: true
+            }
+        }),
+            // The search results will be placed in the collection.
+            mySearchResults = new ymaps.GeoObjectCollection(null, {
+                hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
+            });
+        yMap.controls.add(mySearchControl);
+        yMap.geoObjects.add(mySearchResults);
+        // When the found object is clicked, the placemark turns red.
+        mySearchResults.events.add('click', function (e) {
+            e.get('target').options.set('preset', 'islands#redIcon');
         });
+        // Putting the selected result in the collection.
+        mySearchControl.events.add('resultselect', function (e) {
+            var index = e.get('index');
+            mySearchControl.getResult(index).then(function (res) {
+                mySearchResults.add(res);
+            });
+        }).add('submit', function () {
+            mySearchResults.removeAll();
+        })
+
         input.onchange = function () {
             if (input.getAttribute('data-changed')) {
                 input.removeAttribute('data-changed');
