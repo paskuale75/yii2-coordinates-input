@@ -107,7 +107,7 @@ alexantr.coordinatesWidget = (function (d) {
         yMap.controls.add(mySearchControl);
         yMap.geoObjects.add(mySearchResults);
         // Subscribing to the event of getting search results from the server.
-        searchControl.events.add('resultselect', function (e) {
+        mySearchControl.events.add('resultselect', function (e) {
             var index = searchControl.getSelectedIndex(e);
             console.log("Index of the selected element: " + index);
         })
