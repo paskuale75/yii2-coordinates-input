@@ -131,7 +131,7 @@ alexantr.coordinatesWidget = (function (d) {
                     if (typeof marker !== 'undefined') {
                         yMap.geoObjects.remove(marker);
                     }
-                    marker = new ymaps.Placemark([lat, lng], {}, {preset: placemarkPreset});
+                    var marker = new ymaps.Placemark([lat, lng], {}, {preset: placemarkPreset});
                     yMap.geoObjects.add(marker);
                 }
             }
