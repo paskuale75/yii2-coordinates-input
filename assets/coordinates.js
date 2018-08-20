@@ -116,10 +116,25 @@ alexantr.coordinatesWidget = (function (d) {
             // and the query has at least one result found.
             if (!event.get('skip') && mySearchControl.getResultsCount()) {
                 mySearchControl.showResult(0);
+                console.log('mySearchControl.showResult(0) = ');
+                console.log(mySearchControl.showResult(0));
+                e.get('target').options.set('preset', 'islands#redIcon');
+                console.log('e.get(\'target\'):');
+                console.dir(e.get('target'));
+
+                var coords = e.get('coords');
+                console.log('events.add click --> coords:');
+                console.dir(coords);
+                if (typeof marker !== 'undefined') {
+                    yMap.geoObjects.remove(marker);
+                }
+                marker = new ymaps.Placemark(coords, {}, {preset: placemarkPreset});
+                yMap.geoObjects.add(marker);
+                changeInputValue(input, coords[0], coords[1]);
             }
         });
         // When the found object is clicked, the placemark turns red.
-        mySearchResults.events.add('click', function (e) {
+        /*mySearchResults.events.add('click', function (e) {
             e.get('target').options.set('preset', 'islands#redIcon');
             console.log('e.get(\'target\'):');
             console.dir(e.get('target'));
@@ -133,7 +148,7 @@ alexantr.coordinatesWidget = (function (d) {
             marker = new ymaps.Placemark(coords, {}, {preset: placemarkPreset});
             yMap.geoObjects.add(marker);
             changeInputValue(input, coords[0], coords[1]);
-        });
+        });*/
         // Putting the selected result in the collection.
         mySearchControl.events.add('resultselect', function (e) {
             var index = e.get('index');
