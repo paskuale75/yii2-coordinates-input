@@ -117,7 +117,7 @@ alexantr.coordinatesWidget = (function (d) {
             if (!event.get('skip') && mySearchControl.getResultsCount()) {
                 mySearchControl.showResult(0);
                 console.log('mySearchControl.showResult(0) = ');
-                console.log(mySearchControl.showResult(0));
+                console.dir(mySearchControl.showResult(0));
                 e.get('target').options.set('preset', 'islands#redIcon');
                 console.log('e.get(\'target\'):');
                 console.dir(e.get('target'));
