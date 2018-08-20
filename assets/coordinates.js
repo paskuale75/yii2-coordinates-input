@@ -110,7 +110,14 @@ alexantr.coordinatesWidget = (function (d) {
         mySearchControl.events.add('resultselect', function (e) {
             var index = mySearchControl.getSelectedIndex(e);
             console.log("Index of the selected element: " + index);
-        })
+        });
+        mySearchControl.events.add('load', function (event) {
+            // Checking that this event isn't just finishing loading results
+            // and the query has at least one result found.
+            if (!event.get('skip') && mySearchControl.getResultsCount()) {
+                mySearchControl.showResult(0);
+            }
+        });
         // When the found object is clicked, the placemark turns red.
         mySearchResults.events.add('click', function (e) {
             e.get('target').options.set('preset', 'islands#redIcon');
