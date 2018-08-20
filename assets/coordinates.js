@@ -81,7 +81,7 @@ alexantr.coordinatesWidget = (function (d) {
         // Creating an instance of the ymaps.control.SearchControl class.
         var mySearchControl = new ymaps.control.SearchControl({
             options: {
-                noPlacemark: true
+                noPlacemark: true,
             }
         }),
             // The search results will be placed in the collection.
@@ -95,6 +95,7 @@ alexantr.coordinatesWidget = (function (d) {
             console.log('ho cliccato sul marker... leggo le coordinate ...');
             console.log(e.get('coords'));
             e.get('target').options.set('preset', 'islands#redIcon');
+            e.get('target').options.set('openBalloonOnClick', false);
 
             // gestione del click e della scrittura delle coordinate
             var coords = e.get('coords');
