@@ -108,7 +108,7 @@ alexantr.coordinatesWidget = (function (d) {
         yMap.geoObjects.add(mySearchResults);
         // Subscribing to the event of getting search results from the server.
         mySearchControl.events.add('resultselect', function (e) {
-            var index = searchControl.getSelectedIndex(e);
+            var index = mySearchControl.getSelectedIndex(e);
             console.log("Index of the selected element: " + index);
         })
         // When the found object is clicked, the placemark turns red.
