@@ -94,10 +94,11 @@ alexantr.coordinatesWidget = (function (d) {
 
         // Creating an instance of the ymaps.control.SearchControl class.
         var mySearchControl = new ymaps.control.SearchControl({
-            options: {
-                noPlacemark: true,
-            }
-        }),
+                options: {
+                    noPlacemark: true,
+                }
+            }),
+
             // The search results will be placed in the collection.
             mySearchResults = new ymaps.GeoObjectCollection(null, {
                 hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
@@ -106,19 +107,22 @@ alexantr.coordinatesWidget = (function (d) {
         console.dir(mySearchResults);
         yMap.controls.add(mySearchControl);
         yMap.geoObjects.add(mySearchResults);
+
         // Subscribing to the event of getting search results from the server.
         mySearchControl.events.add('resultselect', function (e) {
             var index = mySearchControl.getSelectedIndex(e);
             console.log("Index of the selected element: " + index);
 
+            var result = mySearchControl.getResult(e);
+            result.then(function (res) {
+                console.log("Results " + res );
+            }, function (err) {
+                console.log("Error");
+            });
+
         });
 
-        var result = mySearchControl.getResult(0);
-        result.then(function (res) {
-            console.log("** Results ** -> " + res );
-        }, function (err) {
-            console.log("Error");
-        });
+
 
         mySearchControl.events.add('load', function (event) {
             // Checking that this event isn't just finishing loading results
