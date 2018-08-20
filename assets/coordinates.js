@@ -110,7 +110,16 @@ alexantr.coordinatesWidget = (function (d) {
         mySearchControl.events.add('resultselect', function (e) {
             var index = mySearchControl.getSelectedIndex(e);
             console.log("Index of the selected element: " + index);
+
         });
+
+        var result = mySearchControl.getResult(0);
+        result.then(function (res) {
+            console.log("** Results ** -> " + res );
+        }, function (err) {
+            console.log("Error");
+        });
+
         mySearchControl.events.add('load', function (event) {
             // Checking that this event isn't just finishing loading results
             // and the query has at least one result found.
