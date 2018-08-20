@@ -113,7 +113,7 @@ alexantr.coordinatesWidget = (function (d) {
             var index = mySearchControl.getSelectedIndex(e);
             console.log("Index of the selected element: " + index);
 
-            var result = mySearchControl.getResult(e);
+            var result = mySearchControl.getResult();
             result.then(function (res) {
                 console.log("Results " + res );
             }, function (err) {
@@ -169,7 +169,8 @@ alexantr.coordinatesWidget = (function (d) {
             mySearchControl.getResult(index).then(function (res) {
                 mySearchResults.add(res);
             });
-            console.log('events.add resultselect --> coords:');
+            console.log('events > add > resultselect ');
+            console.log('res = '+res);
             console.log('index = '+index);
         }).add('submit', function () {
             mySearchResults.removeAll();
