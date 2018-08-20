@@ -92,6 +92,8 @@ alexantr.coordinatesWidget = (function (d) {
         yMap.geoObjects.add(mySearchResults);
         // When the found object is clicked, the placemark turns red.
         mySearchResults.events.add('click', function (e) {
+            console.log('ho cliccato sul marker... leggo le coordinate ...');
+            console.log(e.get('coords'));
             e.get('target').options.set('preset', 'islands#redIcon');
 
             // gestione del click e della scrittura delle coordinate
