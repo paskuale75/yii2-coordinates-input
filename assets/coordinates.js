@@ -99,10 +99,10 @@ alexantr.coordinatesWidget = (function (d) {
             // gestione del click e della scrittura delle coordinate
             var coords = e.get('coords');
             if (typeof marker !== 'undefined') {
-                yMap.geoObjects.remove(marker);
+                //yMap.geoObjects.remove(marker);
             }else{
-                var marker = new ymaps.Placemark(coords, {}, {preset: placemarkPreset});
-                yMap.geoObjects.add(marker);
+                //var marker = new ymaps.Placemark(coords, {}, {preset: placemarkPreset});
+                //yMap.geoObjects.add(marker);
             }
 
             changeInputValue(input, coords[0], coords[1]);
