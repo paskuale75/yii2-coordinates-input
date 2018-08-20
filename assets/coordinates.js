@@ -91,7 +91,7 @@ alexantr.coordinatesWidget = (function (d) {
         yMap.controls.add(mySearchControl);
         yMap.geoObjects.add(mySearchResults);
         // When the found object is clicked, the placemark turns red.
-        mySearchResults.events.add('add', function (index, e) {
+        mySearchResults.events.add('click', function (e) {
             console.log('ho cliccato sul marker... leggo le coordinate ...');
             console.log(e.get('coords'));
             e.get('target').options.set('preset', 'islands#redIcon');
@@ -117,7 +117,7 @@ alexantr.coordinatesWidget = (function (d) {
             });
         }).add('submit', function () {
             mySearchResults.removeAll();
-        })
+        });
 
         input.onchange = function () {
             if (input.getAttribute('data-changed')) {
