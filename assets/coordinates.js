@@ -61,12 +61,12 @@ alexantr.coordinatesWidget = (function (d) {
             controls: [] //none
         });
 
-        /*var marker;
+        var marker;
         if (opt.showMarker) {
             marker = new ymaps.Placemark([opt.lat, opt.lng], {}, {preset: placemarkPreset});
             yMap.geoObjects.add(marker);
         }
-
+        /*
         yMap.events.add('click', function (e) {
             var coords = e.get('coords');
             if (typeof marker !== 'undefined') {
